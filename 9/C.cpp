@@ -8,43 +8,34 @@ int main(int argc, char *argv[])
     
     int initial_amount = 0;
 
-    if(n[0] == '1') 
+    bool assign_one = false;
+    for(auto& x : n)
     {
-
-        bool assign_one = false;
-        for(size_t i = 1; i < n.size(); ++i)
+        if(assign_one)
         {
-            if(assign_one)
-            {
-                n[i] = '1';
-            }
-            if(n[i] > '1')
-            {
-                assign_one = true;
-            }
+            x = '1';
         }
-
-        bool found_large = false;
-        for(size_t i = 1; i < n.size(); ++i)
+        else if(x > '1')
         {
-            char ch = n[i];
-
-            if(ch >= '1')
-            {
-                initial_amount = 2 * initial_amount + 1;
-            }
-            else
-            {
-                initial_amount *= 2;
-            }
+            assign_one = true;
         }
-
-        if(!found_large) ++initial_amount;
     }
-    else
+
+    for(size_t i = 1; i < n.size(); ++i)
     {
-        initial_amount = (1 << (n.size() - 1));
+        char ch = n[i];
+
+        if(ch >= '1')
+        {
+            initial_amount = 2 * initial_amount + 1;
+        }
+        else
+        {
+            initial_amount *= 2;
+        }
     }
+
+    ++initial_amount;
 
     int amount = 0;
     for(int i = 0; i <= static_cast<int>(n.size()) - 2; ++i)
