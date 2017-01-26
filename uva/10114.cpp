@@ -1,51 +1,50 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
-int main(int argc, char *argv[])
+int main()
 {
-    int m;
-    float down;
-    float loan;
-    int n;
-    while(cin >> m >> down >> loan >> n)
-    {
-        if(m < 0)
-        {
-            break;
-        }
+	int months;
+	float down;
+	float loan;
+	int records;
 
-        int owed = loan;
-        int val = down + loan;
-        int month;
+	while (cin >> months >> down >> loan >> records)
+	{
+		if (months < 0)
+		{
+			break;
+		}
 
-        int down_m;
-        float down_p;
-        cin >> down_m >> down_p;
+		vector<float> rates;
+		rates.resize(months + 1);
+		for (int i = 0; i < records; ++i)
+		{
+			int m; 
+			float r;
+			cin >> m >> r;
 
-        cout << endl;
-        for(month = 0; month < n; ++month)
-        {
-            if(month > 0 && owed < val)
-            {
-                break;
-            }
+			for (int i = m; i < rates.size(); ++i)
+			{
+				rates[i] = r;
+			}
+		}
 
-            while(month > down_m)
-            {
-                cin >> down_m >> down_p;
-            }
+		const float loan_per_month = loan / months;
 
-            cout << "owed = " << owed << endl;
-            cout << "val = " << val << endl;
-            owed -= down;
-            val = val * (1 - down_p);
-        }
+		float val = (down + loan) * (1 - rates[0]);
+		float owed = loan;
 
-        cout << month + 1 << " month";
-        if(month > 0)
-        {
-            cout << "s";
-        }
-        cout << endl;
-    }
+		int month = 0;
+		while (val < owed && month < months)
+		{
+			++month;
+			val = val * (1 - rates[month]);
+			owed -= loan_per_month;
+		}
+
+		cout << month << " month";
+		if (month != 1) cout << "s";
+		cout << endl;
+	}
 }
