@@ -6,11 +6,25 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+    int parent[1000000] = {};
     int i = 0;
     string line;
     while(getline(cin, line))
     {
         if(line.empty()) break;
+
+        parent[0] = line[0] == '1' ? 1 : 0;
+        for(int i = 1; i < line.size(); ++i)
+        {
+            if(line[i - 1] != line[i])
+            {
+                parent[i] = parent[i - 1] + 1;
+            }
+            else
+            {
+                parent[i] = parent[i - 1];
+            }
+        }
 
         i += 1;
         int n;
@@ -24,21 +38,9 @@ int main(int argc, char *argv[])
             cin >> i >> j;
             cin.ignore();
 
-            bool same = true;
-            char prev = '\0';
-            for(int x = max(0, min(i, j)); x <= min((int)line.size() - 1, max(i, j)); ++x)
-            {
-                if(prev == '\0')
-                    prev = line[x];
-                if(line[x] != prev)
-                {
-                    same = false;
-                    break;
-                }
-            }
+            const bool same = parent[i] == parent[j];
 
             cout << (same ? "Yes" : "No") << endl;
         }
     }
-
 }
