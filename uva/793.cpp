@@ -5,13 +5,11 @@ class UFDS
 {
 public:
 
-    UFDS(int n) : rank(n, 0), parent(n)
-    {
-        iota(parent.begin(), parent.end(), 0);
-    }
+    UFDS(int n) : rank(n, 0), parent(n, -1) { }
+
     int Find(int x) 
     {
-        if(parent[x] == x) return x;
+        if(parent[x] == -1) return x;
         return parent[x] = Find(parent[x]);
     }
 
@@ -19,17 +17,12 @@ public:
     {
         int r1 = Find(x);
         int r2 = Find(y);
-        if(rank[r1] < rank[r2])
+        if(r1 == r2) return;
+        if(rank[r1] < rank[r2]) { parent[r1] = r2; }
+        else if(rank[r1] > rank[r2]) { parent[r2] = r1; }
+        else 
         {
-            parent[r1] = parent[r2];
-        }
-        else if(rank[r1] > rank[r2])
-        {
-            parent[r2] = parent[r1];
-        }
-        else
-        {
-            parent[r1] = parent[r2];
+            parent[r1] = r2;
             rank[r2]++;
         }
     }
