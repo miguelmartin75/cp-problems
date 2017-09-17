@@ -2,12 +2,12 @@
 
 function count()
 {
-    find $1 -name "*" -type f | wc -l
+    find $1 -name "*.cpp" -or -name "*.java" -type f | wc -l
 }
 
 function print_table()
 {
-    dirs=(codeforces topcoder uva contests)
+    dirs=(codeforces topcoder uva contests atcoder)
 
     echo "| SITE.| AMOUNT SOLVED"
     echo "|-----------.|---------------"
