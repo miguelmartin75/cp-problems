@@ -8,9 +8,9 @@ map<pair<int, int>, float> result;
 
 float solve(int p, int i)
 {
-    //if(result.count(make_pair(p, i)))
+    if(result.count(make_pair(p, i)))
     {
-        //return result[make_pair(p, i)];
+        return result[make_pair(p, i)];
     }
 
     if(p == 0) return 0;
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
         int m, p;
         cin >> n >> m >> p;
 
-        result.clear();
+        //result.clear();
         for(int i = 0; i < 101; ++i)
             for(int j = 0; j < 101; ++j)
                 dist[i][j] = i == j ? 0 : 100000;
