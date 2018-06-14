@@ -1,17 +1,21 @@
-#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
 
 int main(int argc, char *argv[])
 {
     int a, b;
-    std::cin >> a >> b;
+    cin >> a >> b;
 
     int ans = 0; 
-
+    int spare = 0;
     while(a > 0) 
     {
         ans += a;
-        a /= b;
+
+        spare += a;
+        a = spare / b;
+        spare -= a * b;
     }
 
-    std::cout << ans << '\n';
+    cout << ans << endl;
 }
