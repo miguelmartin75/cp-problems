@@ -16,7 +16,7 @@ long leastTimeToInterview(int n, int k, int m)
         edges[v].emplace_back(u, t);
     }
 
-    using node = pair<int, long long>;
+    using node = pair<int, int>;
 
     vector<int> dist(n, INT_MAX);
     dist[0] = 0;
@@ -29,8 +29,8 @@ long leastTimeToInterview(int n, int k, int m)
         auto node = q.top();
         q.pop();
 
-        int u = node.first;
-        int t = node.second;
+        int u = node.second;
+        int t = node.first;
 
         int r = t % k;
 
@@ -52,7 +52,7 @@ long leastTimeToInterview(int n, int k, int m)
             if(w + t < dist[v])
             {
                 dist[v] = w + t;
-                q.emplace(v, w + t);
+                q.emplace(w + t, v);
             }
         }
     }
@@ -60,10 +60,16 @@ long leastTimeToInterview(int n, int k, int m)
     return -1;
 }
 
-int main(int argc, char *argv[])
+
+int main()
 {
-    int n, k, m; 
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    
+    int n, k, m;
     cin >> n >> k >> m;
 
-    cout << leastTimeToInterview(n, k, m) << endl;
+    long result = leastTimeToInterview(n, k, m);
+
+    cout << result << "\n";
 }
