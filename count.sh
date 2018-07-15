@@ -7,7 +7,7 @@ function count()
 
 function print_table()
 {
-    dirs=(codeforces topcoder uva contests atcoder anzac geeksforgeeks)
+    dirs=(codeforces topcoder uva contests atcoder anzac geeksforgeeks euler)
 
     echo "| SITE.| AMOUNT SOLVED"
     echo "|-----------.|---------------"
