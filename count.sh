@@ -1,5 +1,7 @@
 #!/bin/bash
 
+BASE_DIR=sources
+
 function count()
 {
     find $1 -name "*.cpp" -or -name "*.java" -type f | wc -l
@@ -14,7 +16,7 @@ function print_table()
     total=0
     for d in ${dirs[@]}
     do
-        c=$(count $d)
+        c=$(count $BASE_DIR/$d)
         echo "| $d.| $c"
         total=$((total+$c))
     done
