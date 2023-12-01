@@ -1,0 +1,2 @@
+--nimcache:"build/cache"
+--outdir:build
