@@ -1,2 +1,5 @@
 --nimcache:"build/cache"
 --outdir:build
+--debugger:native
+--debuginfo
+--linedir:on
