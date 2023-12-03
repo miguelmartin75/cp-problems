@@ -22,7 +22,6 @@ for line in stdin.lines:
       "blue": 0,
     }.toTable
 
-  var validGame = true
   for draw in line[gameStartIdx+2..^1].split("; "):
     for cubeDesc in draw.split(", "):
       let 
