@@ -2,6 +2,8 @@ import std/strutils
 
 type ll = uint64
 
+# NOTE (post day1): could use {"1": "one", ...} syntax here
+# Ref: https://nim-lang.org/docs/manual.html#statements-and-expressions-table-constructor
 const digitNames = [
   ('1', "one"),
   ('2', "two"),

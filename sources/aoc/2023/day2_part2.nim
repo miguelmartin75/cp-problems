@@ -11,7 +11,6 @@ for line in stdin.lines:
   if line.len == 0:
     continue
 
-
   let
     gameStartIdx = line.find(":")
     gameNum = line[0..<gameStartIdx].split(" ")[1].parseInt
