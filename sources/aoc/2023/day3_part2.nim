@@ -57,7 +57,8 @@ for line_i, line in graph:
     if ch != '*':
       continue
 
-    var connected = initHashSet[Node]()
+    # var connected = initHashSet[Node]()
+    var connected: seq[Node] = @[]
     for kid_i in -1..1:
       for kid_j in -1..1:
         let line = line_i + kid_i
@@ -67,13 +68,15 @@ for line_i, line in graph:
           continue
 
         for node in nodes_by_line[line]:
-          if col >= node.s and col <= node.e:
-            connected.incl(node)
+          if col >= node.s and col <= node.e and not connected.contains(node):
+            # connected.incl(node)
+            connected.add(node)
     
     if len(connected) != 2:
       continue
 
-    let conn = connected.items.toSeq
+    # let conn = connected.items.toSeq
+    let conn = connected
     let ratio = conn[0].text.parseInt * conn[1].text.parseInt
     sum += ratio
 
